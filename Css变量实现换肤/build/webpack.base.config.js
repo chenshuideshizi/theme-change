@@ -101,21 +101,9 @@ module.exports = {
         oneOf: [
           {
             use: [
-              devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: false,
-                  importLoaders: 2,
-                  modules: true
-                }
-              },
-              {
-                loader: 'sass-loader',
-                options: {
-                  sourceMap: false
-                }
-              }
+              MiniCssExtractPlugin.loader,
+              'css-loader',
+              'sass-loader'
             ]
           }
         ]
@@ -131,6 +119,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new MiniCssExtractPlugin(),
     new webpack.DefinePlugin({
       BASE_URL: ''
     }),

@@ -9,7 +9,6 @@ const { resolve } = require('./utils')
 const webpack = require('webpack');
 
 const devMode = process.env.NODE_ENV !== "production"
-let context = resolve('./src')
 
 module.exports = {
   cache: {
@@ -86,39 +85,21 @@ module.exports = {
           {
             use: [
               devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: false
-                }
-              }
+              'css-loader',
+              'postcss-loader'
             ]
           }
         ]
       },
       { // 加载 css
-        test: /\.s(a|c)ss$/,
+        test: /\.s[ac]ss$/,
         oneOf: [
           {
             use: [
               devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: false,
-                  importLoaders: 2,
-                  modules: true
-                }
-              },
-              {
-                loader: 'sass-loader',
-                options: {
-                  sourceMap: false
-                }
-              },
-              {
-                loader: 'postcss-loader'
-              }
+              'css-loader',
+              'postcss-loader',
+              'sass-loader'
             ]
           }
         ]

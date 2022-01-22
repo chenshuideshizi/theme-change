@@ -22,7 +22,7 @@ export default {
   name: "PageContent"
 };
 </script>
-<style lang="scss" rel="stylesheet/scss">
+<style lang="scss">
 @import "../../../styles/variable.scss";
 @import "../../../styles/mixin.scss";
 .reaconmend {

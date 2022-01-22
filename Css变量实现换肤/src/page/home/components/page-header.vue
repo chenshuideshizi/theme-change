@@ -1,10 +1,12 @@
 <template>
   <div class="header">
     <div class="text">小恐龙换肤</div>
-    <div role="switch" class="switch" :class="theme === true ? 'is-checked' : ''">
-      <input type="checkbox" name true-value="true" class="switch-input" />
-      <span class="switch-core" @click="changeTheme"></span>
-    </div>
+
+    <select v-model="theme" @change="onThemeChange">
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+
   </div>
 </template>
 
@@ -13,23 +15,17 @@ export default {
   name: "PageHeader",
   data() {
     return {
-      theme: true // false深色主题
+      theme: 'light'
     };
   },
   methods: {
-    changeTheme() {
-      this.theme = !this.theme;
-      document.documentElement.setAttribute(
-        "data-theme",
-        this.theme ? "light" : "dark"
-      );
+    onThemeChange(e) {
+      this.theme = e.target.value
+      document.documentElement.setAttribute("data-theme", this.theme);
     }
   },
   mounted() {
-    document.documentElement.setAttribute(
-      "data-theme",
-      this.theme ? "light" : "dark"
-    );
+    document.documentElement.setAttribute("data-theme", this.theme);
   }
 };
 </script>

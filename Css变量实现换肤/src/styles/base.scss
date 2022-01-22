@@ -1,0 +1,6 @@
+@import "./variable.scss";
+@import "./mixin.scss";
+body,
+html {
+  background-color: var(--fill-1);
+}
