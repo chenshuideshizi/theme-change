@@ -115,9 +115,6 @@ module.exports = {
                 options: {
                   sourceMap: false
                 }
-              },
-              {
-                loader: 'postcss-loader'
               }
             ]
           }
