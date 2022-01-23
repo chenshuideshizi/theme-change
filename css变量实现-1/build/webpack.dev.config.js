@@ -1,11 +1,5 @@
 const { merge } = require('webpack-merge')
-const path = require('path')
-const webpack = require('webpack')
-
-process.env.NODE_ENV = 'development'
-
-const resolve = p => path.resolve(__dirname, '../', p)
-
+const { resolve } = require('./utils')
 const baseConfig = require('./webpack.base.config')
 
 module.exports = merge(baseConfig, {
@@ -29,5 +23,6 @@ module.exports = merge(baseConfig, {
   },
   plugins: [
 
-  ]
+  ],
+  devtool: 'source-map'
 })

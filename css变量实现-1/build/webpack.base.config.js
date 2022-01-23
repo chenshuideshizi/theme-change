@@ -7,8 +7,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const { resolve } = require('./utils')
 const webpack = require('webpack');
-
-const devMode = process.env.NODE_ENV !== "production"
+const rules = require('./rules')
 
 module.exports = {
   cache: {
@@ -22,99 +21,29 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
-  output: {
-    filename: devMode ? 'static/js/[name].js' : 'static/js/[name].[contenthash:8].js',
-    path: resolve('./dist'),
-    publicPath: '/',
-    chunkFilename: 'static/js/[name].[contenthash:8].js',
-    assetModuleFilename: 'images/[hash][ext][query]',
-    clean: true
-  },
-  devtool: devMode ? 'source-map' : false,
   resolve: {
     symlinks: false,
-    extensions: ['.js', '.vue'],  
+    extensions: ['.js', '.vue'],
     alias: {
       '@': resolve('./src')
     },
     modules: [
-      resolve( './node_modules'),
+      resolve('./node_modules'),
       'node_modules'
     ]
   },
   module: {
     noParse: /^(vue|vue-router|vuex)$/,
-    rules: [
-      {
-        test: /\.vue$/,
-        use: [
-          {
-            loader: 'vue-loader',
-            options: {
-              compilerOptions: {
-                preserveWhitespace: true
-              },
-              cacheDirectory: resolve('./node_modules/.cache/vue-loader')
-            }
-          }
-        ]
-      },
-      { // js 文件
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          'babel-loader',
-          {
-            loader: "thread-loader",
-            options: {
-              workers: 2
-            }
-          }
-        ]
-      },
-      { // 加载图片
-        test: /\.(png|svg|jpg|jpeg|gif)(\?.*)?$/,
-        type: 'asset/resource',
-        generator: {
-					filename: 'static/images/[name].[hash][ext][query]'
-				}
-      }, 
-      { // 加载 css
-        test: /\.css$/,
-        oneOf: [
-          {
-            use: [
-              devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
-              'css-loader',
-              'postcss-loader'
-            ]
-          }
-        ]
-      },
-      { // 加载 css
-        test: /\.s[ac]ss$/,
-        oneOf: [
-          {
-            use: [
-              devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
-              'css-loader',
-              'postcss-loader',
-              'sass-loader'
-            ]
-          }
-        ]
-      },
-
-      { // 加载字体
-        test: /\.(woff|woff2|eot|ttf|otf)(\?.*)?$/,
-        type: 'asset/resource',
-        generator: {
-					filename: 'static/fonts/[name].[hash][ext][query]'
-				}
-      }
-    ]
+    rules: rules
   },
   plugins: [
+    new MiniCssExtractPlugin(
+      {
+        filename: 'static/css/[name].[contenthash:8].css',
+        chunkFilename: 'static/css/[name].[contenthash:8].css',
+        ignoreOrder: true
+      }
+    ),
     new webpack.DefinePlugin({
       BASE_URL: ''
     }),
