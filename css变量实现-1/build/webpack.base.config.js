@@ -13,10 +13,6 @@ module.exports = {
   cache: {
     type: "filesystem", // 使用文件系统缓存
   },
-  performance: { // 打包性能优化提示
-    maxAssetSize: 100000000,
-    maxEntrypointSize: 400000000
-  },
   context: resolve('./'), // 基础目录，绝对路径，用于从配置中解析入口点(entry point)和 加载器(loader)。
   entry: {
     app: './src/main.js'
@@ -71,33 +67,6 @@ module.exports = {
     })
   ],
   optimization: {
-    // sideEffects: false,
-    minimizer: [
-      new CssMinimizerPlugin() // webpack@5 仅在生产环境开启 CSS 优化
-    ],
-    splitChunks: {
-      chunks: 'all',
-      cacheGroups: {
-        libs: {
-          name: 'chunk-libs',
-          test: /[\\/]node_modules[\\/]/,
-          priority: 10,
-          chunks: 'initial'
-        },
-        elementUI: {
-          name: 'chunk-elementUI',
-          priority: 20,
-          test: /[\\/]node_modules[\\/]_?element-ui(.*)/
-        },
-        commons: {
-          name: 'chunk-commons',
-          test: resolve('./components'),
-          minChunks: 3,
-          priority: 5,
-          reuseExistingChunk: true
-        }
-      }
-    },
-    runtimeChunk: 'single'
+
   }
 }
