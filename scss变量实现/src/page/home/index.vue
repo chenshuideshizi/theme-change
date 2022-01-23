@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import PageHeader from '../../components/page-header'
+import PageHeader from './components/page-header'
 import PageContent from "./components/page-content";
 export default {
   name: "index",
