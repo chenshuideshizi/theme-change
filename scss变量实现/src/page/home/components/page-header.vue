@@ -2,7 +2,7 @@
   <div class="header">
     <div class="text">
       小恐龙换肤
-      <select @change="changeTheme">
+      <select @change="onThemeChange">
         <option value="light" selected>Light</option>
         <option value="dark">Dark</option>
       </select>
@@ -19,7 +19,7 @@ export default {
     };
   },
   methods: {
-    changeTheme(e) {
+    onThemeChange(e) {
       this.theme = e.target.value
       document.documentElement.setAttribute('data-theme', this.theme);
     },

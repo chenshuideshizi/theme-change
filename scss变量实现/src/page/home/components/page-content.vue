@@ -16,7 +16,7 @@
 </template>
 <script>
 export default {
-  name: "reaconmend",
+  name: "PageContent",
   data() {
     return {};
   },
@@ -24,8 +24,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../../styles/variable.scss";
-@import "../../../styles/mixin.scss";
+@import "@/styles/variable.scss";
+@import "@/styles/mixin.scss";
 
 .article-title {
   height: 40px;
