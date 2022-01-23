@@ -27,17 +27,15 @@ export default {
   methods: {
     changeTheme() {
       this.theme = !this.theme;
-      document.documentElement.setAttribute(
-        "data-theme",
-        this.theme ? "light" : "dark",
-      );
+      // document.documentElement.setAttribute(
+      //   "data-theme",
+      //   this.theme ? "light" : "dark",
+      // );
+      window.toggleTheme(this.theme ? "light" : "dark")
     },
   },
   mounted() {
-    document.documentElement.setAttribute(
-      "data-theme",
-      this.theme ? "light" : "dark",
-    );
+
   },
 };
 </script>

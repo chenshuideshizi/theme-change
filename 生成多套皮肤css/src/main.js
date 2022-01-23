@@ -1,7 +1,9 @@
 import Vue from "vue";
 import App from "./App.vue";
-import cssVars from "css-vars-ponyfill";
 import router from "./router";
+
+import cssVars from "css-vars-ponyfill";
+
 function toggleTheme(theme) {
   var $link = window.createLink();
   $link.href = "./" + theme + ".css";
@@ -10,6 +12,7 @@ function toggleTheme(theme) {
   });
   return theme;
 }
+
 window.toggleTheme = toggleTheme;
 toggleTheme("light");
 
