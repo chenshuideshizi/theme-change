@@ -13,8 +13,7 @@ module.exports = merge(baseConfig,{
     clean: true
   },
   plugins: [
-  ],
-  devtool: 'source-map'
+  ]
 })
 
 
