@@ -1,96 +1,35 @@
 <template>
-  <div class="reaconmend" ref="reaconmend">
-    <div class="reaconmend-content">
-      <div>
-        <div class="reaconmend-list">
-          <ul>
-            <li @click="selectItem(item)" v-for="item in discList" :key="item.dissid" class="item">
-              <div class="icon">
-                <img :src="item.imgurl" alt width="60px" height="60px" />
-              </div>
-              <div class="text">
-                <h2 class="name" v-html="item.creator.name"></h2>
-                <div class="desc" v-html="item.dissname"></div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
+  <div>
+    <div class="article-title">静夜思</div>
+    <div class="article-author">李白 唐代</div>
+    <div class="article-content">
+      床前明月光，疑是地上霜。<br>
+      举头望明月，低头思故乡。
     </div>
   </div>
 </template>
+
 <script>
-import { list } from "../data";
 export default {
-  name: "reaconmend",
-  data() {
-    return {
-      discList: []
-    };
-  },
-  created() {
-    this._getDiscList();
-  },
-  methods: {
-    _getDiscList() {
-      this.discList = list;
-      console.log(this.discList);
-    }
-  },
+  name: "PageContent",
   components: {}
 };
 </script>
-<style lang="scss" rel="stylesheet/scss">
-.reaconmend {
-  .reaconmend-content {
-    height: 100%;
-    .slider-wrapper {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-    }
+
+<style lang="scss" scoped>
+  .article-title {
+    height: 40px;
+    line-height: 40 px;
+    text-align: center;
+    font-size: var(--font-size-medium);
+    color: var(--text-1);
   }
-  .reaconmend-list {
-    .list-title {
-      height: 40px;
-      line-height: 40 px;
-      text-align: center;
-      font-size: var(--font-size-medium);
-      color: var(--text-1);
-    }
-    .item {
-      display: flex;
-      box-sizing: border-box;
-      align-items: center;
-      padding: 0 20px 20px 20px;
-      .icon {
-        flex: 0 0 60px;
-        width: 60px;
-        padding-right: 20px;
-      }
-      .text {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex: 1;
-        line-height: 20px;
-        overflow: hidden;
-        color: var(--font-size-medium);
-      }
-      .name {
-        margin-bottom: 10px;
-        color: var(--text);
-      }
-      .desc {
-        color: var(--text-1);
-      }
-    }
+  .article-author {
+    line-height: 20px;
+    color: var(--text-2);
   }
-  .loading-container {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
+  .article-content {
+    margin-bottom: 10px;
+    color: var(--text);
   }
-}
 </style>

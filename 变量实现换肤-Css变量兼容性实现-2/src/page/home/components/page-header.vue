@@ -1,25 +1,29 @@
 <template>
   <div class="header">
-    <div class="text">小恐龙换肤</div>
-    <div role="switch" class="switch" :class="theme === true ? 'is-checked' : ''">
-      <input type="checkbox" class="switch-input" />
-      <span class="switch-core" @click="changeTheme"></span>
+    <div class="text">
+      小恐龙换肤
+
+      <select v-model="theme" @change="onThemeChange">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
     </div>
+
   </div>
 </template>
 
 <script>
-import { initTheme } from "../../../theme";
+import { initTheme } from "@/theme";
 export default {
-  name: "m-header",
+  name: "PageHeader",
   data() {
     return {
-      theme: true // false深色主题
+      theme: 'light'
     };
   },
   methods: {
-    changeTheme() {
-      this.theme = !this.theme;
+    onThemeChange(e) {
+      this.theme = e.target.value
       initTheme(this.theme);
     }
   },

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import { initTheme } from "../../../theme";
-import bus from "../../../bus";
+import { initTheme } from "@/theme";
+import bus from "@/bus";
 export default {
   name: "page-header",
   data() {
