@@ -1,9 +1,11 @@
 <template>
   <div class="header">
-    <div class="text">小恐龙换肤</div>
-    <div role="switch" class="switch" :class="theme === true ? 'is-checked' : ''">
-      <input type="checkbox" class="switch-input" />
-      <span class="switch-core" @click="changeTheme"></span>
+    <div class="text">
+      小恐龙换肤
+      <select v-model="theme" @change="onThemeChange">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
     </div>
   </div>
 </template>
@@ -14,17 +16,18 @@ export default {
   name: "PageHeader",
   data() {
     return {
-      theme: true
+      theme: 'light',
+      themeMap: {
+        'light': lightTheme,
+        'dark': darkTheme
+      }
     };
   },
   methods: {
-    changeTheme() {
-      this.theme = !this.theme;
-      // 调用 `less.modifyVars` 方法来改变变量值
-      window.less.modifyVars(this.theme ? lightTheme : darkTheme);
+    onThemeChange() {
+      window.less.modifyVars(this.themeMap[this.theme]);
     }
-  },
-  mounted() {}
+  }
 };
 </script>
 
